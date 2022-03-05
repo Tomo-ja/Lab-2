@@ -56,6 +56,9 @@ form.addEventListener('submit',(e)=>{
 	newRow.innerHTML = `<td>${name}</td><td>${price}</td><td>${popularity}</td><td>X</td>`
 	tableBody.appendChild(newRow)
 
+	let message = `New menu is ${name}. Price is ${price}. it would be ${popularity} popularity`
+	alert(message)
+
 	// delete old info in the inputs
 	nameOfNew.value = ""
 	priceOfNew.value = ""
