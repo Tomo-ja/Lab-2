@@ -13,15 +13,15 @@ let newTableBody = document.createElement('tbody')
 newTableBody.id = "table-body"
 parentTable.appendChild(newTableBody)
 
-const tableBody = document.getElementById('table-body')
+let tableBody = document.getElementById('table-body')
 for (i=0; i<menu.length; i++){
 	let newRow = document.createElement('tr')
 	newRow.innerHTML = `<td>${menu[i].Name}</td><td>${menu[i].Price}</td><td>${menu[i].Popularity}</td><td>x</td>`
 	tableBody.appendChild(newRow)
 }
 
-const tableRows = tableBody.getElementsByTagName('tr')
-const tableRowsArray = Array.from(tableRows)
+let tableRows = tableBody.getElementsByTagName('tr')
+let tableRowsArray = Array.from(tableRows)
 
 tableRowsArray.forEach(row => {
 	row.addEventListener('mouseover', ()=>{
@@ -49,6 +49,7 @@ form.addEventListener('submit',(e)=>{
 	nameOfNew.value = ""
 	priceOfNew.value = ""
 	popularityOfNew.value = ""
+	addDeleteFunction()
 })
 
 tableRowsArray.forEach(row => {
@@ -61,3 +62,18 @@ tableRowsArray.forEach(row => {
 	})
 })
 
+function addDeleteFunction () {
+	tableBody = document.getElementById('table-body')
+	tableRows = tableBody.getElementsByTagName('tr')
+	tableRowsArray = Array.from(tableRows)
+
+	tableRowsArray.forEach(row => {
+		let cells = row.getElementsByTagName('td')
+		let cellsArray = Array.from(cells)
+		let deleteBtns = cellsArray[cellsArray.length -1]
+		deleteBtns.addEventListener('click', ()=>{
+			let parentRow = deleteBtns.parentNode
+			parentRow.style.display = "none"
+		})
+	})
+}
